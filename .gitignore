@@ -1,0 +1,6 @@
+.history/
+.terraform/
+.idea/
+*.iml
+target/
+bin/
