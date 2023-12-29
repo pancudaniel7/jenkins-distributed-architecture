@@ -28,6 +28,11 @@ variable "az_worker_a" {
   default = "eu-west-1a"
 }
 
+variable "az_worker_b" {
+  type    = string
+  default = "eu-west-1b"
+}
+
 variable "regions" {
   description = "All the regions used"
   default     = ["eu-central-1", "eu-west-1"]  # Add as many regions as needed

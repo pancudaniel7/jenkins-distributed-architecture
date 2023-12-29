@@ -9,3 +9,7 @@ variable "subnet1_cidr" {
 variable "availability_zone1" {
   description = "The availability zone for the first subnet"
 }
+
+variable "iwg_id" {
+  description = "Internet gateway ID"
+}
