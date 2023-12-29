@@ -1,3 +1,8 @@
+variable "profile" {
+  type    = string
+  default = "default"
+}
+
 variable "env" {
   type    = string
   default = "default"
@@ -8,9 +13,19 @@ variable "region_master" {
   default = "eu-central-1"
 }
 
+variable "az_master_a" {
+  type    = string
+  default = "eu-central-1a"
+}
+
 variable "region_worker" {
   type    = string
   default = "eu-west-1"
+}
+
+variable "az_worker_a" {
+  type    = string
+  default = "eu-west-1a"
 }
 
 variable "regions" {
@@ -26,4 +41,5 @@ variable "master_instances_names" {
 variable "worker_instances_names" {
   description = "All the regions used"
   default     = ["worker_instance1"]
+
 }
