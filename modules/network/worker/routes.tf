@@ -7,7 +7,7 @@ resource "aws_route_table" "public" {
   }
 
   tags = {
-    Name = "public-route-table"
+    Name = "${var.name}-public-route-table"
   }
 }
 
@@ -19,4 +19,10 @@ resource "aws_route_table_association" "subnet1_association" {
 resource "aws_route_table_association" "subnet2_association" {
   subnet_id      = aws_subnet.subnet2.id
   route_table_id = aws_route_table.public.id
+}
+
+resource "aws_route" "worker_subnet_a_and_b_to_master" {
+  route_table_id            = aws_route_table.public.id
+  destination_cidr_block    = var.master_subnet1_cidr
+  vpc_peering_connection_id = var.peering_connection_id
 }

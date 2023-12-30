@@ -46,5 +46,19 @@ variable "master_instances_names" {
 variable "worker_instances_names" {
   description = "All the regions used"
   default     = ["worker_instance1"]
+}
 
+variable "master_subnet1_cidr" {
+  default     = "172.16.1.0/24"
+  description = "Worker subnet2 cidr"
+}
+
+variable "worker_subnet1_cidr" {
+  default     = "10.0.1.0/24"
+  description = "Worker subnet1 cidr"
+}
+
+variable "worker_subnet2_cidr" {
+  default     = "10.0.2.0/24"
+  description = "Worker subnet2 cidr"
 }

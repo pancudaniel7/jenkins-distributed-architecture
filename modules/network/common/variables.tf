@@ -4,6 +4,6 @@ variable "cidr_block" {
 }
 
 variable "name" {
-  description = "VPC name"
+  description = "Universal name"
   type        = string
 }

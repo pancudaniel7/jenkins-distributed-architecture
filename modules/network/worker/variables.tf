@@ -21,3 +21,15 @@ variable "availability_zone2" {
 variable "iwg_id" {
   description = "Internet gateway ID"
 }
+
+variable "name" {
+  description = "Universal name"
+}
+
+variable "peering_connection_id" {
+  description = "Peering connection ID"
+}
+
+variable "master_subnet1_cidr" {
+  description = "Peering connection ID"
+}
