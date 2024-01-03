@@ -1,4 +1,4 @@
-module "worker_common" {
+module "common_worker" {
     providers = {
       aws = aws.worker
     }
@@ -7,7 +7,7 @@ module "worker_common" {
     cidr_block = "10.0.0.0/16"
 }
 
-module "master_common" {
+module "common_master" {
     providers = {
       aws = aws.master
     }
@@ -25,10 +25,10 @@ module "master_network" {
 
     name = "master-dev"
 
-    vpc_id = module.master_common.vpc_id
-    iwg_id = module.master_common.iwg_id
+    vpc_id = module.common_master.vpc_id
+    iwg_id = module.common_master.iwg_id
 
-    peering_vpc_id = module.worker_common.vpc_id
+    peering_vpc_id = module.common_worker.vpc_id
     peer_region = var.region_worker
 
     worker_subnet1_cidr = var.worker_subnet1_cidr
@@ -37,8 +37,8 @@ module "master_network" {
     availability_zone1 = var.az_master_a
 
     depends_on = [
-      module.worker_common,
-      module.master_common
+      module.common_worker,
+      module.common_master
     ]
 }
 
@@ -53,18 +53,52 @@ module "worker_network" {
 
     name = "worker-dev"
     
-    vpc_id = module.worker_common.vpc_id
-    iwg_id = module.worker_common.iwg_id
+    vpc_id = module.common_worker.vpc_id
+    iwg_id = module.common_worker.iwg_id
     
     availability_zone1 = var.az_worker_a
     availability_zone2 = var.az_worker_b
 
     master_subnet1_cidr = var.master_subnet1_cidr
-
     peering_connection_id = module.master_network.peering_connection_id
 
     depends_on = [
-      module.worker_common,
+      module.common_worker,
       module.master_network
     ]
+}
+
+module "worker_security_groups" {
+  providers = {
+      aws = aws.worker
+  }
+  source = "./modules/security/sg"
+  ec2_security_group_name = "worker-dev-ec2"
+  vpc_id = module.common_worker.vpc_id
+
+  depends_on = [
+     module.common_worker
+  ]
+}
+
+module "worker_first_ec2" {
+  providers = {
+      aws = aws.worker
+  }
+  source   = "./modules/computing/ec2"
+  
+  name = "worker-first-node"
+  ami_id = "ami-0f29c8402f8cce65c"
+  instance_type = "t3.micro"
+  
+  public_key_path = var.ssh_public_key_path
+  public_key_name = "jenkins-infra"
+  
+  subnet_id = module.worker_network.subnet1_id
+  security_group_id = module.worker_security_groups.ec2_security_group_id
+
+  depends_on = [
+     module.worker_network,
+     module.worker_security_groups
+  ]
 }

@@ -62,3 +62,7 @@ variable "worker_subnet2_cidr" {
   default     = "10.0.2.0/24"
   description = "Worker subnet2 cidr"
 }
+
+variable "ssh_public_key_path" {
+  type    = string
+}
