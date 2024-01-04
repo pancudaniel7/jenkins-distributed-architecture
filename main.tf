@@ -81,6 +81,19 @@ module "worker_security_groups" {
   ]
 }
 
+module "master_security_groups" {
+  providers = {
+      aws = aws.master
+  }
+  source = "./modules/security/sg"
+  ec2_security_group_name = "master-dev-ec2"
+  vpc_id = module.common_master.vpc_id
+
+  depends_on = [
+     module.common_master
+  ]
+}
+
 module "worker_first_ec2" {
   providers = {
       aws = aws.worker
@@ -92,7 +105,7 @@ module "worker_first_ec2" {
   instance_type = "t3.micro"
   
   public_key_path = var.ssh_public_key_path
-  public_key_name = "jenkins-infra"
+  public_key_name = var.ssh_key_name
   
   subnet_id = module.worker_network.subnet1_id
   security_group_id = module.worker_security_groups.ec2_security_group_id
@@ -102,3 +115,48 @@ module "worker_first_ec2" {
      module.worker_security_groups
   ]
 }
+
+module "worker_second_ec2" {
+  providers = {
+      aws = aws.worker
+  }
+  source   = "./modules/computing/ec2"
+  
+  name = "worker-second-node"
+  ami_id = "ami-0f29c8402f8cce65c"
+  instance_type = "t3.micro"
+  
+  public_key_path = var.ssh_public_key_path
+  public_key_name = var.ssh_key_name
+  
+  subnet_id = module.worker_network.subnet2_id
+  security_group_id = module.worker_security_groups.ec2_security_group_id
+
+  depends_on = [
+     module.worker_network,
+     module.worker_security_groups
+  ]
+}
+
+module "master_first_ec2" {
+  providers = {
+      aws = aws.master
+  }
+  source   = "./modules/computing/ec2"
+  
+  name = "master-first-node"
+  ami_id = "ami-09042b2f6d07d164a"
+  instance_type = "t3.micro"
+  
+  public_key_path = var.ssh_public_key_path
+  public_key_name = var.ssh_key_name
+  
+  subnet_id = module.master_network.subnet1_id
+  security_group_id = module.master_security_groups.ec2_security_group_id
+
+  depends_on = [
+     module.master_network,
+     module.master_security_groups
+  ]
+}
+

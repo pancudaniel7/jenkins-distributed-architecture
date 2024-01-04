@@ -1,5 +1,9 @@
+resource "random_id" "ssh_key_suffix" {
+  byte_length = 8
+}
+
 resource "aws_key_pair" "main" {
-  key_name   = "${var.public_key_name}"
+  key_name   = "${var.public_key_name}-${random_id.ssh_key_suffix.hex}"
   public_key = file("${var.public_key_path}/${var.public_key_name}.pub")
 }
 
