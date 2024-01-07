@@ -1,0 +1,17 @@
+plugin: aws_ec2
+
+regions:
+  - eu-west-1
+  - eu-central-1
+filters:
+  tag:Name: ["worker-dev-first-node", "worker-dev-second-node", "master-dev-first-node"]
+
+hostnames:
+  - tag:Name
+
+keyed_groups:
+  - key: tags['Name']
+
+compose:
+  ansible_host: public_ip_address
+  ansible_user: "'ubuntu'"

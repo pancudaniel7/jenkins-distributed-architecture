@@ -1,15 +1,29 @@
-- name: Install Jenkins on EC2 Instances
-  hosts: tag_Jenkins_Servers
-  become: yes
+---
+- name: Set up Jenkins Cluster
+  hosts: master-dev-first-node
+  become: true
+
   tasks:
-    - name: Install Java
+    - name: Install software-properties-common
       apt:
-        name: default-jdk
+        name: software-properties-common
         state: present
 
-    - name: Add Jenkins Repository Key
-      apt_key:
-        url: https://pkg.jenkins.io/debian/jenkins.io.key
+    - name: Add the Deadsnakes PPA
+      apt_repository:
+        repo: ppa:deadsnakes/ppa
+
+        state: present
+
+    - name: Install Python 3.6
+      apt:
+        update_cache: yes
+        name: python3.6
+        state: present
+
+    - name: Install Java
+      apt:
+        name: openjdk-11-jdk
         state: present
 
     - name: Add Jenkins Repository
@@ -17,9 +31,20 @@
         repo: deb https://pkg.jenkins.io/debian-stable binary/
         state: present
 
+    - name: Add Repository Key
+      apt_key:
+        url: https://pkg.jenkins.io/debian-stable/jenkins.io.key
+        state: present
+
     - name: Install Jenkins
       apt:
         name: jenkins
         state: present
-        update_cache: yes
+      when: inventory_hostname == "master-dev-first-node"
 
+    - name: Start Jenkins
+      service:
+        name: jenkins
+        state: started
+        enabled: yes
+      when: inventory_hostname == "master-dev-first-node"
