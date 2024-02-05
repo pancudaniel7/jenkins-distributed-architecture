@@ -16,7 +16,7 @@ Main Terraform commands for checking,deploying and destroying infrastructure:
 terraform init
 terraform validate
 terraform plan
-terraform apply -auto-approve -var-file=dev.tfvars
-terraform destroy -auto-approve -var-file=dev.tfvars
+terraform apply -auto-approve -var-file=dev.tfvars -lock=false
+terraform destroy -auto-approve -var-file=dev.tfvars -lock=false
 ```
 
