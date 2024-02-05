@@ -65,9 +65,10 @@ variable "worker_subnet2_cidr" {
 
 variable "ssh_public_key_path" {
   type    = string
+  default = "~/.ssh"
 }
 
 variable "ssh_key_name" {
   type    = string
-  default = "jenkins-infra"
+  default = "jenkins_infra"
 }
