@@ -2,7 +2,7 @@
 
 # Params:
 # 1 - region (default: eu-central-1)
-# 2 - ssh key name (default: jenkins-infra)
+# 2 - ssh key name (default: jenkins_infra)
 # 3 - ec2 linux user name (default: ubuntu)
 
 output=$(aws ec2 describe-instances --region ${1:-eu-central-1} --query "Reservations[*].Instances[*].[InstanceId,PublicIpAddress,Tags[?Key=='Name'].Value | [0]]" --output text)
@@ -24,4 +24,4 @@ done <<< "$output"
 echo "Select instance you want to conenct by typing the line number,"
 read -r input
 
-ssh -i ~/.ssh/${2:-jenkins-infra} ${3:-ubuntu}@${public_ips[((input-1))]}
+ssh -i ~/.ssh/${2:-jenkins_infra} ${3:-ubuntu}@${public_ips[((input-1))]}
