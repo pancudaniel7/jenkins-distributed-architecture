@@ -1,0 +1,16 @@
+---
+- hosts: master-dev-first-node
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
+  become: true
+  roles:
+    - tools
+    - jenkins
+
+- hosts: worker-dev-*
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
+  become: true
+  roles:
+    - tools
+    - jenkins

@@ -1,0 +1,6 @@
+---
+- name: restart jenkins
+  systemd:
+    name: jenkins
+    state: restarted
+    enabled: yes
