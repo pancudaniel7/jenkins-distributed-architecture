@@ -5,6 +5,12 @@ the project uses Terraform workspaces for isolating environment infrastructure c
 
 # RUN
 
+Env variables: 
+```bash
+export TF_VAR_ssh_public_key_path=/Users/pancudaniel/.ssh; \
+export TF_VAR_ssh_key_name=jenkins_infra # This is also the default value in the code
+```
+
 Basics Terraform workspaces commands:
 ```sh
 terraform workspace new [env-name]

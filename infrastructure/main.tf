@@ -101,7 +101,7 @@ module "worker_first_ec2" {
   source   = "./modules/computing/ec2"
   
   name = "worker-dev-first-node"
-  ami_id = "ami-0f29c8402f8cce65c"
+  ami_id = "ami-0905a3c97561e0b69"
   instance_type = "t3.micro"
   
   public_key_path = var.ssh_public_key_path
@@ -123,7 +123,7 @@ module "worker_second_ec2" {
   source   = "./modules/computing/ec2"
   
   name = "worker-dev-second-node"
-  ami_id = "ami-0f29c8402f8cce65c"
+  ami_id = "ami-0905a3c97561e0b69"
   instance_type = "t3.micro"
   
   public_key_path = var.ssh_public_key_path
@@ -145,7 +145,7 @@ module "master_first_ec2" {
   source   = "./modules/computing/ec2"
   
   name = "master-dev-first-node"
-  ami_id = "ami-09042b2f6d07d164a"
+  ami_id = "ami-0faab6bdbac9486fb"
   instance_type = "t3.micro"
   
   public_key_path = var.ssh_public_key_path

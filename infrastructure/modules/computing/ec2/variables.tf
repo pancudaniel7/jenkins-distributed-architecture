@@ -17,7 +17,7 @@ variable "name" {
 
 variable "ami_id" {
   description = "AMI image ID"
-  default = "ami-09042b2f6d07d164a" # eu-central-1
+  default = "ami-Ofc02b454efabb390" # eu-central-1
 }
 
 variable "subnet_id" {
