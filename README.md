@@ -1,5 +1,5 @@
 
-# Jenkins Distributed Architecture Project
+# Jenkins Distributed Architecture
 
 ## Overview
 
