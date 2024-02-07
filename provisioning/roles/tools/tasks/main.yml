@@ -6,4 +6,3 @@
     update_cache: yes
     cache_valid_time: 3600 # Update cache if it's older than 1 hour
   when: ansible_os_family == "Debian"
-

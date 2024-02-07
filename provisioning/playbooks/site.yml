@@ -5,7 +5,7 @@
   become: true
   roles:
     - tools
-    - jenkins
+    - install
 
 - hosts: worker-dev-*
   vars:
@@ -13,4 +13,4 @@
   become: true
   roles:
     - tools
-    - jenkins
+    - install

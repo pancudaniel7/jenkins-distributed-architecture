@@ -26,3 +26,17 @@
     name: jenkins
     state: started
     enabled: yes
+
+- name: Get Jenkins initial admin password
+  command: cat /var/lib/jenkins/secrets/initialAdminPassword
+  register: initial_admin_password
+  changed_when: false
+
+- name: Display Jenkins initial admin password
+  debug:
+    var: initial_admin_password.stdout
+
+- name: Include shared tasks
+  include_tasks: ../common/tasks/display_public_ip.yml
+
+
