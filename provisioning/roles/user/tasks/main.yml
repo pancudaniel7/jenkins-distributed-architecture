@@ -1,0 +1,28 @@
+---
+- name: Download jenkins-cli.jar
+  ansible.builtin.get_url:
+    url: "{{ jenkins_controller_url }}/jnlpJars/jenkins-cli.jar"
+    dest: "/usr/local/bin/jenkins-cli.jar"
+    mode: '0755'
+    # validate_certs: no # Use this if your Jenkins uses self-signed certificates
+  register: download_jenkins_cli
+
+- name: Check if jenkins-cli.jar download was successful
+  ansible.builtin.fail:
+    msg: "Failed to download jenkins-cli.jar"
+  when: download_jenkins_cli is failed
+
+- name: Create a new Jenkins admin user
+  shell: |
+    echo 'jenkins.model.Jenkins.instance.securityRealm.createAccount("{{ admin_user }}", "{{ admin_password }}")' | java -jar /usr/local/bin/jenkins-cli.jar -auth {{ admin_user }}:{{ jenkins_initial_admin_password }} -s {{ jenkins_controller_url }} groovy =
+  args:
+    executable: /bin/bash
+  register: create_user_output
+  ignore_errors: true
+  failed_when: false
+
+- name: Display task output
+  debug:
+    var: create_user_output.stdout_lines
+
+

@@ -1,0 +1,8 @@
+---
+- name: Display Jenkins initial admin password
+  debug:
+    var: initial_admin_password.stdout
+
+- name: Display public IP of the Node
+  debug:
+    msg: "Public IP of the node: {{ ansible_host }}"

@@ -1,4 +1,0 @@
----
-- name: Display Public IP of the Node
-  debug:
-    msg: "Public IP of the node: {{ ansible_host }}"

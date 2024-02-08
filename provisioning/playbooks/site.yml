@@ -2,15 +2,26 @@
 - hosts: master-dev-first-node
   vars:
     ansible_python_interpreter: /usr/bin/python3
+    jenkins_user: admin
+    jenkins_password: ""
   become: true
   roles:
-    - tools
-    - install
+    - role: tools
+    - role: install_controller
+    - role: display
+    - role: store
+    - role: user
+      vars:
+        jenkins_controller_url: "http://{{ hostvars['shared_host'].controller_ip }}:8080"
+        admin_user: "{{ jenkins_user }}"
+        admin_password: "{{ jenkins_password }}"
 
 - hosts: worker-dev-*
   vars:
     ansible_python_interpreter: /usr/bin/python3
   become: true
   roles:
-    - tools
-    - install
+    - role: tools
+    - role: install_agent
+      vars:
+        jenkins_controller_url: "http://{{ hostvars['shared_host'].controller_ip }}:8080"

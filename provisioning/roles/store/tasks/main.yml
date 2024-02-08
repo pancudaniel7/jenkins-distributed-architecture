@@ -1,0 +1,17 @@
+---
+- name: Store controller private ip
+  add_host:
+    name: "shared_host"
+    groups: "shared_vars"
+    controller_ip: "{{ ansible_default_ipv4.address }}"
+  delegate_to: localhost
+  run_once: true
+
+- name: Store Jenkins initial admin password
+  slurp:
+    src: "/var/lib/jenkins/secrets/initialAdminPassword"
+  register: initial_password_encoded
+
+- name: Decode and store initial admin password
+  set_fact:
+    jenkins_initial_admin_password: "{{ initial_password_encoded['content'] | b64decode | trim }}"
