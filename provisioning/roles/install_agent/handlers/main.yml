@@ -1,6 +1,0 @@
----
-- name: Restart Jenkins Agent
-  ansible.builtin.systemd:
-    name: jenkins-agent
-    state: restarted
-    enabled: true
