@@ -4,7 +4,7 @@
     name: "*"
     state: latest
 
-- name: download jenkins key
+- name: Download jenkins key
   ansible.builtin.get_url:
     url: https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
     dest: /usr/share/keyrings/jenkins-keyring.asc
@@ -29,7 +29,7 @@
 
 - name: Register Jenkins initial admin password
   command: cat /var/lib/jenkins/secrets/initialAdminPassword
-  register: initial_admin_password
+  register: jenkins_initial_admin_password
   ignore_errors: true
   changed_when: false
   

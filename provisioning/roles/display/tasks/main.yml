@@ -1,7 +1,7 @@
 ---
 - name: Display Jenkins initial admin password
   debug:
-    var: initial_admin_password.stdout
+    var: jenkins_initial_admin_password.stdout
 
 - name: Display public IP of the Node
   debug:

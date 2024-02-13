@@ -1,5 +1,25 @@
 ---
 - hosts: master-dev-first-node
+  become: true
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
+    jenkins_user: admin
+    jenkins_password: ""
+  roles:
+    - role: install_tools
+    - role: install_controller
+    - role: display
+    - role: store
+    - role: download_cli
+      vars:
+        controller_url: "http://{{ hostvars['shared_host'].controller_ip }}:8080"
+    - role: user
+      vars:
+        controller_url: "http://{{ hostvars['shared_host'].controller_ip }}:8080"
+        user: "{{ jenkins_user }}"
+        password: "{{ jenkins_password }}"
+
+- hosts: worker-dev-*
   vars:
     ansible_python_interpreter: /usr/bin/python3
     jenkins_user: admin
@@ -7,21 +27,19 @@
   become: true
   roles:
     - role: install_tools
-    - role: install_controller
-    - role: display
-    - role: store
-    - role: user
+    - role: download_cli
       vars:
-        jenkins_controller_url: "http://{{ hostvars['shared_host'].controller_ip }}:8080"
-        admin_user: "{{ jenkins_user }}"
-        admin_password: "{{ jenkins_password }}"
-
-# - hosts: worker-dev-*
-#   vars:
-#     ansible_python_interpreter: /usr/bin/python3
-#   become: true
-#   roles:
-#     - role: install_tools
-#     - role: install_agent
-#       vars:
-#         jenkins_controller_url: "http://{{ hostvars['shared_host'].controller_ip }}:8080"
+        controller_url: "http://{{ hostvars['shared_host'].controller_ip }}:8080"
+    - role: enable_agent
+      vars:
+        controller_url: "http://{{ hostvars['shared_host'].controller_ip }}:8080"
+        user: "{{ jenkins_user }}"
+        password: "{{ jenkins_password }}"
+        agent_name:  "{{ inventory_hostname }}"
+    - role: register_node
+      vars:
+        controller_url: "http://{{ hostvars['shared_host'].controller_ip }}:8080"
+        home: "/home/{{ jenkins_user }}"
+        user: "{{ jenkins_user }}"
+        password: "{{ jenkins_password }}"
+        agent_name:  "{{ inventory_hostname }}"

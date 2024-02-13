@@ -1,0 +1,12 @@
+---
+- name: Generate node configuration XML
+  template:
+    src: node-config.xml.j2
+    dest: "/tmp/node-config.xml"
+
+- name: Create Jenkins node
+  shell: "java -jar /usr/local/bin/jenkins-cli.jar -s {{ controller_url }}/ -auth {{ user }}:{{ password }} create-node < /tmp/node-config.xml"
+  args:
+    executable: /bin/bash
+  ignore_errors: true
+  failed_when: false

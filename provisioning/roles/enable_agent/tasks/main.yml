@@ -1,0 +1,24 @@
+---
+- name: Create jenkins directory
+  ansible.builtin.file:
+    path: /tmp/jenkins
+    state: directory
+    mode: '0755'
+
+- name: Download Jenkins agent.jar
+  get_url:
+    url: "{{ controller_url }}/jnlpJars/agent.jar"
+    dest: "/tmp/jenkins/agent.jar"
+    mode: '0755'
+
+- name: Ensure agent working directory exists
+  file:
+    path: "/tmp/jenkins"
+    state: directory
+
+- name: Start Jenkins agent
+  shell: |
+    java -jar /tmp/jenkins/agent.jar -url {{ controller_url }} -secret {{ password }} -name {{ agent_name }} -workDir "/tmp/jenkins"
+  async: 0
+  poll: 0
+  become: true

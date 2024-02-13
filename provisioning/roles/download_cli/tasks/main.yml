@@ -1,0 +1,12 @@
+---
+- name: Download jenkins-cli.jar
+  ansible.builtin.get_url:
+    url: "{{ controller_url }}/jnlpJars/jenkins-cli.jar"
+    dest: "/usr/local/bin/jenkins-cli.jar"
+    mode: '0755'
+  register: download_jenkins_cli
+
+- name: Check if jenkins-cli.jar download was successful
+  ansible.builtin.fail:
+    msg: "Failed to download jenkins-cli.jar"
+  when: download_jenkins_cli is failed
