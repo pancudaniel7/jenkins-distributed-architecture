@@ -6,7 +6,7 @@
     jenkins_password: ""
   become: true
   roles:
-    - role: tools
+    - role: install_tools
     - role: install_controller
     - role: display
     - role: store
@@ -16,12 +16,12 @@
         admin_user: "{{ jenkins_user }}"
         admin_password: "{{ jenkins_password }}"
 
-- hosts: worker-dev-*
-  vars:
-    ansible_python_interpreter: /usr/bin/python3
-  become: true
-  roles:
-    - role: tools
-    - role: install_agent
-      vars:
-        jenkins_controller_url: "http://{{ hostvars['shared_host'].controller_ip }}:8080"
+# - hosts: worker-dev-*
+#   vars:
+#     ansible_python_interpreter: /usr/bin/python3
+#   become: true
+#   roles:
+#     - role: install_tools
+#     - role: install_agent
+#       vars:
+#         jenkins_controller_url: "http://{{ hostvars['shared_host'].controller_ip }}:8080"
