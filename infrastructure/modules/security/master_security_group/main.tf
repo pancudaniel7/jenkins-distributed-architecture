@@ -9,11 +9,19 @@ resource "aws_security_group" "ec2_security_groups" {
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
-  
+
   ingress {
-    description = "Jenkins port"
+    description = "Jenkins UI port from anywhere"
     from_port   = 8080
     to_port     = 8080
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    description = "Jenkins jnlp just for workers networks"
+    from_port   = 50000
+    to_port     = 50000
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }

@@ -3,7 +3,7 @@ module "common_worker" {
       aws = aws.worker
     }
     source   = "./modules/network/common"
-    name = "worker-dev"
+    name = "worker-${var.env}"
     cidr_block = "10.0.0.0/16"
 }
 
@@ -12,7 +12,7 @@ module "common_master" {
       aws = aws.master
     }
     source   = "./modules/network/common"
-    name = "master-dev"
+    name = "master-${var.env}"
     cidr_block = "172.16.0.0/16"
 }
 
@@ -23,7 +23,7 @@ module "master_network" {
     source   = "./modules/network/master"
     subnet1_cidr = var.master_subnet1_cidr
 
-    name = "master-dev"
+    name = "master-${var.env}"
 
     vpc_id = module.common_master.vpc_id
     iwg_id = module.common_master.iwg_id
@@ -51,7 +51,7 @@ module "worker_network" {
     subnet1_cidr = var.worker_subnet1_cidr
     subnet2_cidr = var.worker_subnet2_cidr
 
-    name = "worker-dev"
+    name = "worker-${var.env}"
     
     vpc_id = module.common_worker.vpc_id
     iwg_id = module.common_worker.iwg_id
@@ -68,39 +68,13 @@ module "worker_network" {
     ]
 }
 
-module "worker_security_groups" {
-  providers = {
-      aws = aws.worker
-  }
-  source = "./modules/security/sg"
-  ec2_security_group_name = "worker-dev-ec2"
-  vpc_id = module.common_worker.vpc_id
-
-  depends_on = [
-     module.common_worker
-  ]
-}
-
-module "master_security_groups" {
-  providers = {
-      aws = aws.master
-  }
-  source = "./modules/security/sg"
-  ec2_security_group_name = "master-dev-ec2"
-  vpc_id = module.common_master.vpc_id
-
-  depends_on = [
-     module.common_master
-  ]
-}
-
 module "worker_first_ec2" {
   providers = {
       aws = aws.worker
   }
   source   = "./modules/computing/ec2"
   
-  name = "worker-dev-first-node"
+  name = "worker-${var.env}-first-node"
   ami_id = "ami-0905a3c97561e0b69"
   instance_type = "t3.micro"
   
@@ -116,13 +90,39 @@ module "worker_first_ec2" {
   ]
 }
 
+module "worker_security_groups" {
+  providers = {
+      aws = aws.worker
+  }
+  source = "./modules/security/worker_security_group"
+  ec2_security_group_name = "worker-${var.env}-common-security-groups"
+  vpc_id = module.common_worker.vpc_id
+
+  depends_on = [
+     module.common_worker
+  ]
+}
+
+module "master_security_groups" {
+  providers = {
+      aws = aws.master
+  }
+  source = "./modules/security/master_security_group"
+  ec2_security_group_name = "master-${var.env}-common-security-groups"
+  vpc_id = module.common_master.vpc_id
+
+  depends_on = [
+     module.common_master
+  ]
+}
+
 module "worker_second_ec2" {
   providers = {
       aws = aws.worker
   }
   source   = "./modules/computing/ec2"
   
-  name = "worker-dev-second-node"
+  name = "worker-${var.env}-second-node"
   ami_id = "ami-0905a3c97561e0b69"
   instance_type = "t3.micro"
   
@@ -144,7 +144,7 @@ module "master_first_ec2" {
   }
   source   = "./modules/computing/ec2"
   
-  name = "master-dev-first-node"
+  name = "master-${var.env}-first-node"
   ami_id = "ami-0faab6bdbac9486fb"
   instance_type = "t3.micro"
   

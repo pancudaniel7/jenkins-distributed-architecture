@@ -1,6 +1,7 @@
 ---
-- name: restart jenkins
+- name: Restart Jenkins
   systemd:
     name: jenkins
     state: restarted
     enabled: yes
+    daemon_reload: yes

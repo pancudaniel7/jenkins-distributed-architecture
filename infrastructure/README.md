@@ -75,3 +75,6 @@ Replace `[env].tfvars` with the variable file for your specific environment (e.g
 ## Note
 
 This README provides guidelines and best practices for managing infrastructure with Terraform, particularly for complex setups involving multiple environments and regions. Adjust the steps and commands according to your project's specific requirements and infrastructure.
+
+---
+For provisioning setup details, see [Provisioning](../provisioning/README.md).

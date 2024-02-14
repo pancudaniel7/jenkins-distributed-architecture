@@ -21,7 +21,7 @@ while read -r instance_id public_ip name; do
     names+=("$name")
 done <<< "$output"
 
-echo "Select instance you want to conenct by typing the line number,"
+echo "Select instance you want to connect by typing the line number,"
 read -r input
 
 ssh -i ~/.ssh/${2:-jenkins_infra} ${3:-ubuntu}@${public_ips[((input-1))]}

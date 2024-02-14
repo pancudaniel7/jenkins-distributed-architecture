@@ -1,0 +1,15 @@
+---
+- name: Install lxml for Python3 using apt
+  ansible.builtin.apt:
+    name: python3-lxml
+    state: present
+  become: true
+
+- name: Ensure JNLP port is enabled and set to a fixed port
+  community.general.xml:
+    path: "{{ jenkins_config_file }}"
+    xpath: "/hudson/slaveAgentPort"
+    value: "{{ jnlp_port }}"
+    state: "present"
+  become: true
+  notify: Restart Jenkins

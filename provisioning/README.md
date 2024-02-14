@@ -20,7 +20,7 @@ To provision your infrastructure with Ansible, execute the following commands:
 2. **Execute the Playbook**:
    Run the Ansible playbook to start the provisioning process.
    ```bash
-   ansible-playbook -i inventory/inventory_aws_ec2.yml playbooks/site.yml -e "jenkins_password=admin"
+   ansible-playbook -i inventory/inventory_aws_ec2.yml playbooks/site.yml -e "jenkins_password=asdasdiytagsdjh123"
    ```
 
 ## Jenkins Configuration
@@ -44,4 +44,4 @@ Once Jenkins is up and running, you can:
 
 ---
 
-For infrastructure setup details, see [Infrastructure README](../infrastructure/README.md).
+For infrastructure setup details, see [Infrastructure](../infrastructure/README.md).
