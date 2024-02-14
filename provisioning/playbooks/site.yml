@@ -18,6 +18,10 @@
         controller_url: "http://{{ hostvars['shared_host'].controller_ip }}:8080"
         user: "{{ jenkins_user }}"
         password: "{{ jenkins_password }}"
+    - role: enable_jnlp
+      vars:
+        jenkins_config_file: "/var/lib/jenkins/config.xml"
+        jnlp_port: "50000"
 
 - hosts: worker-dev-*
   vars:
@@ -30,12 +34,6 @@
     - role: download_cli
       vars:
         controller_url: "http://{{ hostvars['shared_host'].controller_ip }}:8080"
-    - role: enable_agent
-      vars:
-        controller_url: "http://{{ hostvars['shared_host'].controller_ip }}:8080"
-        user: "{{ jenkins_user }}"
-        password: "{{ jenkins_password }}"
-        agent_name:  "{{ inventory_hostname }}"
     - role: register_node
       vars:
         controller_url: "http://{{ hostvars['shared_host'].controller_ip }}:8080"

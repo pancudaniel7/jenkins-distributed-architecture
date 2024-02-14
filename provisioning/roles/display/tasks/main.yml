@@ -6,3 +6,7 @@
 - name: Display public IP of the Node
   debug:
     msg: "Public IP of the node: {{ ansible_host }}"
+
+- name: Display private IP of the Node
+  debug:
+    msg: "Public IP of the node: {{ ansible_default_ipv4.address }}"
