@@ -3,7 +3,10 @@
 
 ## Overview
 
-This project sets up a Jenkins distributed architecture using Terraform for infrastructure management and Ansible for provisioning. The setup includes a Jenkins master node and several slave nodes to efficiently manage and scale CI/CD tasks.
+This project leverages a Jenkins distributed architecture, enhanced by Terraform for efficient infrastructure management and Ansible for seamless node provisioning. The setup features a master node and multiple slave nodes, designed to optimize CI/CD processes through scalable and flexible task distribution. 
+<br>
+<br>
+By utilizing Terraform, we automate cloud resource provisioning, while Ansible ensures consistent configuration across all nodes. This architecture not only accelerates development cycles by efficiently managing workloads but also improves reliability and scalability, catering to the dynamic demands of modern software projects.
 
 ## Architecture Diagram
 

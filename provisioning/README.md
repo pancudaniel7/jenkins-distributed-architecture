@@ -25,10 +25,6 @@ To provision your infrastructure with Ansible, execute the following commands:
 
 ## Jenkins Configuration
 
-### Post-Provisioning Details
-
-After the provisioning process with Ansible, your Jenkins master and worker nodes will be set up. You can find the initial admin password for Jenkins on the master node in the `/var/lib/jenkins/secrets/initialAdminPassword` file. Additionally, this password, along with the public IP addresses of the Jenkins master and worker nodes, will be displayed in the output of the Ansible playbook run.
-
 ### Accessing Jenkins Nodes
 
 Use the public IP addresses displayed in the Ansible playbook output to access the Jenkins web interface and configure node communications. These IP addresses provide direct access to the Jenkins nodes for initial setup and further configuration tasks
