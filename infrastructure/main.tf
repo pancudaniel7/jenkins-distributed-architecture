@@ -74,7 +74,7 @@ module "worker_first_ec2" {
   }
   source   = "./modules/computing/ec2"
   
-  name = "worker-${var.env}-first-node"
+  name = "worker-${var.env}-node1"
   ami_id = "ami-0905a3c97561e0b69"
   instance_type = "t3.micro"
   
@@ -122,7 +122,7 @@ module "worker_second_ec2" {
   }
   source   = "./modules/computing/ec2"
   
-  name = "worker-${var.env}-second-node"
+  name = "worker-${var.env}-node2"
   ami_id = "ami-0905a3c97561e0b69"
   instance_type = "t3.micro"
   
@@ -144,7 +144,7 @@ module "master_first_ec2" {
   }
   source   = "./modules/computing/ec2"
   
-  name = "master-${var.env}-first-node"
+  name = "master-${var.env}-node1"
   ami_id = "ami-0faab6bdbac9486fb"
   instance_type = "t3.micro"
   

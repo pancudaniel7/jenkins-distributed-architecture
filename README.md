@@ -10,7 +10,9 @@ By utilizing Terraform, we automate cloud resource provisioning, while Ansible e
 
 ## Architecture Diagram
 
-![architecture_diagram](docs/images/architecture.jpg    )
+
+![architecture_diagram](docs/images/architecture.jpeg)
+
 
 ## Setting Up the Infrastructure
 
