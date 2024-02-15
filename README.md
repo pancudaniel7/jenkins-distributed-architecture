@@ -11,7 +11,7 @@ By utilizing Terraform, we automate cloud resource provisioning, while Ansible e
 ## Architecture Diagram
 
 
-![architecture_diagram](docs/images/jenkins-architecture-diagram.jpeg)
+![architecture_diagram](docs/images/architecture.jpg)
 
 
 ## Setting Up the Infrastructure
