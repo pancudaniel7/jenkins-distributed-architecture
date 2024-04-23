@@ -14,16 +14,16 @@ By utilizing Terraform, we automate cloud resource provisioning, while Ansible e
 ![architecture_diagram](docs/images/architecture.jpg)
 
 
-## Setting Up the Infrastructure
+## Setting Up the Deployment
 
-Follow the steps in [Infrastructure](./infrastructure/README.md) to set up the infrastructure using Terraform.
+Follow the steps in [Deployment](./deployment/README.md) to set up the deployment using Terraform.
 
 ## Provisioning with Ansible
 
-After setting up the infrastructure, provision the servers using the steps described in [Provisioning](./provisioning/README.md).
+After setting up the deployment, provision the servers using the steps described in [Provisioning](./provisioning/README.md).
 
 ## Registering Jenkins Agents
-To scale Jenkins operations, agents can be dynamically registered from each EC2 node. This process allows for a more flexible and scalable CI/CD infrastructure, enabling Jenkins to distribute tasks across multiple environments efficiently.
+To scale Jenkins operations, agents can be dynamically registered from each EC2 node. This process allows for a more flexible and scalable CI/CD deployment, enabling Jenkins to distribute tasks across multiple environments efficiently.
 
 #### Quick Steps: <br>
 

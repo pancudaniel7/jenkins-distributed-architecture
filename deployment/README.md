@@ -1,7 +1,7 @@
 
-# Infrastructure
+# Deployment
 
-This directory contains the Terraform configuration for setting up the infrastructure across multiple regions and environments. The design leverages Terraform workspaces for isolating environment-specific infrastructure code.
+This directory contains the Terraform configuration for deploying the infrastructure across multiple regions and environments. The design leverages Terraform workspaces for isolating environment-specific infrastructure code.
 
 ## Overview
 

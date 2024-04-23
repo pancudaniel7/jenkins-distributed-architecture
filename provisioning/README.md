@@ -40,4 +40,4 @@ Once Jenkins is up and running, you can:
 
 ---
 
-For infrastructure setup details, see [Infrastructure](../infrastructure/README.md).
+For infrastructure setup details, see [Deployment](../deployment/README.md).
