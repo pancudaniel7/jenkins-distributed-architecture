@@ -14,7 +14,7 @@ By utilizing Terraform, we automate cloud resource provisioning, while Ansible e
 ![architecture_diagram](docs/images/architecture.jpg)
 
 
-## Setting Up the Deployment
+## Infrastructure Deployment
 
 Follow the steps in [Deployment](./deployment/README.md) to set up the deployment using Terraform.
 
