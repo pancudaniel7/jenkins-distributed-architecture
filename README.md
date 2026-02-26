@@ -1,6 +1,8 @@
 
 # Jenkins Distributed Architecture
 
+Terraform + Ansible blueprint for a scalable Jenkins controller/agent architecture on AWS.
+
 ## Overview
 
 This project leverages a Jenkins distributed architecture, enhanced by Terraform for efficient infrastructure management and Ansible for seamless node provisioning. The setup features a master node and multiple slave nodes, designed to optimize CI/CD processes through scalable and flexible task distribution. 
