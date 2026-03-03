@@ -5,10 +5,10 @@ Terraform + Ansible blueprint for a scalable Jenkins controller/agent architectu
 
 ## Overview
 
-This project leverages a Jenkins distributed architecture, enhanced by Terraform for efficient infrastructure management and Ansible for seamless node provisioning. The setup features a master node and multiple slave nodes, designed to optimize CI/CD processes through scalable and flexible task distribution. 
+This project leverages a Jenkins distributed architecture, enhanced by Terraform for efficient infrastructure provisioning and Ansible for seamless Jenkins deployment/configuration. The setup features a master node and multiple slave nodes, designed to optimize CI/CD processes through scalable and flexible task distribution. 
 <br>
 <br>
-By utilizing Terraform, I automate cloud resource deployment, while Ansible ensures consistent configuration across all nodes. This architecture not only accelerates development cycles by efficiently managing workloads but also improves reliability and scalability, catering to the dynamic demands of modern software projects.
+By utilizing Terraform, I automate cloud resource provisioning, while Ansible ensures consistent Jenkins deployment and configuration across all nodes. This architecture not only accelerates development cycles by efficiently managing workloads but also improves reliability and scalability, catering to the dynamic demands of modern software projects.
 
 ## Architecture Diagram
 
@@ -16,13 +16,13 @@ By utilizing Terraform, I automate cloud resource deployment, while Ansible ensu
 ![architecture_diagram](docs/images/architecture.jpg)
 
 
-## Infrastructure Deployment
+## Infrastructure Provisioning (Terraform)
 
-Follow the steps in [Deployment](./deployment/README.md) to set up the deployment using Terraform.
+Follow the steps in [Provisioning](./provisioning/README.md) to stand up the AWS infrastructure with Terraform.
 
-## Provisioning with Ansible
+## Jenkins Deployment (Ansible)
 
-After setting up the deployment, provision the servers using the steps described in [Provisioning](./provisioning/README.md).
+After provisioning the infrastructure, deploy and configure Jenkins using the steps described in [Deployment](./deployment/README.md).
 
 ## Registering Jenkins Agents
 To scale Jenkins operations, agents can be dynamically registered from each EC2 node. This process allows for a more flexible and scalable CI/CD deployment, enabling Jenkins to distribute tasks across multiple environments efficiently.

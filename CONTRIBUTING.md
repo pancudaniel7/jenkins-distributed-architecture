@@ -20,12 +20,12 @@ will be licensed under Apache-2.0.
 ## Getting Started
 
 This repository provisions a Jenkins controller/agent architecture using
-Terraform (in `deployment/`) and Ansible (in `provisioning/`). See detailed
+Terraform (in `provisioning/`) and Ansible (in `deployment/`). See detailed
 instructions in those directories’ READMEs.
 
 ### Terraform workflow (summary)
 
-From `deployment/`:
+From `provisioning/`:
 
 ```sh
 terraform init
@@ -42,7 +42,7 @@ Tips:
 
 ### Ansible workflow (summary)
 
-From `provisioning/`:
+From `deployment/`:
 
 ```sh
 ansible-inventory -i inventory/inventory_aws_ec2.yml --list
@@ -50,7 +50,7 @@ ansible-playbook -i inventory/inventory_aws_ec2.yml playbooks/site.yml -e "jenki
 ```
 
 Tips:
-- Ensure your SSH key matches the one provisioned by Terraform
+- Ensure your SSH key matches the one created during Terraform provisioning
 - Lint playbooks: `ansible-lint` (if installed)
 
 ## Pull Requests
@@ -67,9 +67,9 @@ Use clear, descriptive commit messages. Conventional Commits are welcome but
 not required. Example:
 
 ```
-feat(provisioning): add node registration role for agents
+feat(deployment): add node registration role for agents
 fix(terraform): correct security group egress rule
-docs: improve deployment README with workspace examples
+docs: improve provisioning README with workspace examples
 ```
 
 ## Code Style & Licensing
@@ -82,4 +82,3 @@ docs: improve deployment README with workspace examples
 
 Please do not file public issues for vulnerabilities. See SECURITY.md for our
 responsible disclosure process.
-

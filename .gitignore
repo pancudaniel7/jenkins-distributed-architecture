@@ -44,3 +44,4 @@ ansible.log
 .cache/ansible/
 # Ansible Vault password file (if used)
 .vault_pass
+.lh/
