@@ -55,9 +55,7 @@ representative at an online or offline event.
 
 ## Enforcement
 
-Instances of abusive, harassing, or otherwise unacceptable behavior may be
-reported to the community leaders responsible for enforcement at
-opensource@your-org.example.
+Report unacceptable behavior by opening an issue in this repository.
 
 All complaints will be reviewed and investigated promptly and fairly.
 
@@ -117,4 +115,3 @@ enforcement ladder](https://github.com/mozilla/diversity).
 For answers to common questions about this code of conduct, see the FAQ at
 https://www.contributor-covenant.org/faq. Translations are available at
 https://www.contributor-covenant.org/translations.
-
